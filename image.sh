@@ -14,7 +14,7 @@ else
     echo -e "${RED}We only support Ubuntu 20.04.x LTS!${NC}"
     echo -e ""
 fi
-VISIONVERSION=`cat meta-openvision/conf/distro/openvision-image.conf | grep -oP '(?<=VISIONVERSION = ")[0-9].[0-9]*'`
+VISIONVERSION=`cat meta-openvision/conf/distro/openvision-image.conf | grep -oP '(?<=VISIONVERSION = ")[0-9]*.[0-9]*'`
 VISIONREVISION=`cat meta-openvision/conf/distro/revision.conf | grep -oP '(?<=VISIONREVISION = "r)[0-9]*'`
 VISIONSTATUSCOLOR=`cat meta-openvision/conf/distro/vision-status-color`
 echo -e "${BLUE}Welcome to Open Vision ${GREEN}${VISIONVERSION}-r${VISIONREVISION} ${BLUE}image compile script!"
