@@ -32,6 +32,7 @@ DEPENDS_append_sh4 = " \
 
 RDEPENDS_${PN} = "\
 	alsa-conf \
+	${@bb.utils.contains("MACHINE_FEATURES", "emmc", "bzip2 rsync", "", d)} \
 	enigma2-data-iso-639-3 \
 	enigma2-fonts \
 	enigma2-plugin-extensions-pespeedup \
@@ -39,11 +40,15 @@ RDEPENDS_${PN} = "\
 	ethtool \
 	glibc-gconv-iso8859-15 \
 	${@bb.utils.contains_any("MACHINE_FEATURES", "smallflash middleflash", "", "glibc-gconv-cp1250", d)} \
+	hotplug-e2-helper \
 	${@bb.utils.contains("MACHINE_FEATURES", "uianimation", "libvugles2-${MACHINE} libgles-${MACHINE}", "", d)} \
 	ntpdate \
+	${@bb.utils.contains_any("MACHINE_FEATURES", "smallflash middleflash", "", "ofgwrite", d)} \
 	openvision-branding \
+	openvision-module \
+	openvision-version-info \
 	${PYTHON_RDEPS} \
-	${@bb.utils.contains("MACHINE_FEATURES", "emmc", "bzip2 rsync", "", d)} \
+	virtual/enigma2-mediaservice \
 	"
 
 RDEPENDS_${PN}_append_rpi = " \
@@ -54,13 +59,6 @@ RDEPENDS_${PN}_append_rpi = " \
 RDEPENDS_${PN}_append_sh4 = " \
 	alsa-utils-amixer-conf \
 	libmme-host \
-	"
-
-RRECOMMENDS_${PN} = "\
-	hotplug-e2-helper \
-	${@bb.utils.contains_any("MACHINE_FEATURES", "smallflash middleflash", "", "ofgwrite", d)} \
-	${PYTHONNAMEONLY}-sendfile \
-	virtual/enigma2-mediaservice \
 	"
 
 PYTHONEXACTVERSION_CHECK = "${@bb.utils.contains("PYTHONEXACTVERSION", "python3", "python3-image python3-pillow", "python-image python-imaging", d)}"
@@ -79,6 +77,7 @@ PYTHON_RDEPS = "\
 	${PYTHONNAMEONLY}-pickle \
 	python-process \
 	${PYTHONNAMEONLY}-pyusb \
+	${PYTHONNAMEONLY}-sendfile \
 	${PYTHONNAMEONLY}-service-identity \
 	${PYTHONNAMEONLY}-shell \
 	${PYTHONNAMEONLY}-six \
@@ -143,11 +142,11 @@ ENIGMA2_BRANCH = "develop"
 PV = "develop+git${SRCPV}"
 PKGV = "develop+git${GITPKGV}"
 
-SRC_URI = "git://github.com/OpenVisionE2/${ENIGMA2_GIT}.git;branch=${ENIGMA2_BRANCH}"
-
-SRC_URI_append = " ${@bb.utils.contains("MACHINE_FEATURES", "uianimation", "file://use-lv3ddriver-for-uianimation.patch" , "", d)}"
-
-SRC_URI_append_rpi = " file://remote.conf"
+SRC_URI = "\
+	git://github.com/OpenVisionE2/${ENIGMA2_GIT}.git;branch=${ENIGMA2_BRANCH} \
+	${@bb.utils.contains("MACHINE_FEATURES", "uianimation", "file://use-lv3ddriver-for-uianimation.patch" , "", d)} \
+	${@bb.utils.contains("BOX_BRAND", "rpi", "file://remote.conf", "", d)} \
+	"
 
 LDFLAGS_prepend = " -lxml2 "
 
