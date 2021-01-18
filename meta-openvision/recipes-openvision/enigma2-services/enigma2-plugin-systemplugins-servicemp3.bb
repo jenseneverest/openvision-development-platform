@@ -64,15 +64,21 @@ DEPENDS = "\
 	${PYTHONNAMEONLY} \
 	"
 
+GST_NEEDED_PLUGINS = "\
+	${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "\
+	${GST_BASE_RDEPS} \
+	${GST_GOOD_RDEPS} \
+	${GST_BAD_RDEPS} \
+	${GST_UGLY_RDEPS} \
+	", d)} \
+	"
+
 RDEPENDS_${PN} = "\
 	enigma2 \
 	glib-networking \
 	gstreamer1.0-plugin-subsink \
 	virtual/gstreamer1.0-dvbmediasink \
-	${GST_BASE_RDEPS} \
-	${GST_GOOD_RDEPS} \
-	${GST_BAD_RDEPS} \
-	${GST_UGLY_RDEPS} \
+	${GST_NEEDED_PLUGINS} \
 	"
 
 SRC_URI = "git://github.com/OpenVisionE2/servicemp3.git"

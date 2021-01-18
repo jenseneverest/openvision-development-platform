@@ -66,16 +66,22 @@ DEPENDS = "\
 	${PYTHONNAMEONLY} \
 	"
 
-RDEPENDS_${PN} = "\
-	enigma2 \
-	${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "\
-	glib-networking \
-	gstreamer1.0-plugin-subsink \
-	virtual/gstreamer1.0-dvbmediasink \
+GST_NEEDED_PLUGINS = "\
+	${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "\
 	${GST_BASE_RDEPS} \
 	${GST_GOOD_RDEPS} \
 	${GST_BAD_RDEPS} \
 	${GST_UGLY_RDEPS} \
+	", d)} \
+	"
+
+RDEPENDS_${PN} = "\
+	enigma2 \
+	${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "\
+	glib-networking \
+	${GSTVNAME}-plugin-subsink \
+	virtual/${GSTVNAME}-dvbmediasink \
+	${GST_NEEDED_PLUGINS} \
 	", d)} \
 	"
 
