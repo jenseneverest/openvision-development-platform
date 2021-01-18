@@ -98,6 +98,7 @@ IMAGE_INSTALL += "\
 	frequency-xml-list-satellites \
 	frequency-xml-list-terrestrial \
 	frequency-xml-list-unicable \
+	${@bb.utils.contains("MACHINE_FEATURES", "hisil", "gstreamer1.0-plugin-dvbmediasink", "gstreamer1.0-plugin-dvbmediasink gstreamer1.0-libav", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "sh4stb", "kernel-module-block2mtd libcrypto", "", d)} \
 	kernel-module-autofs4 \
 	kernel-module-fuse \
