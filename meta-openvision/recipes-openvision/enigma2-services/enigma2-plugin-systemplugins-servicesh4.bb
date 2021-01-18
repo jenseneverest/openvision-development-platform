@@ -17,10 +17,6 @@ DEPENDS = "\
 
 RDEPENDS_${PN} = "\
 	enigma2 \
-	libeplayer3 \
-	"
-
-RRECOMMENDS_${PN} = "\
 	glib-networking \
 	libeplayer3 \
 	"

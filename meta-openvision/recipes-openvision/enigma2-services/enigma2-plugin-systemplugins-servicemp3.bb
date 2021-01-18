@@ -1,5 +1,4 @@
 DESCRIPTION = "servicemp3 for enigma2"
-AUTHOR = "OpenPLi team <info@openpli.org>"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
@@ -67,9 +66,6 @@ DEPENDS = "\
 
 RDEPENDS_${PN} = "\
 	enigma2 \
-	"
-
-RDEPENDS_${PN} = "\
 	glib-networking \
 	gstreamer1.0-plugin-subsink \
 	virtual/gstreamer1.0-dvbmediasink \

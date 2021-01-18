@@ -1,5 +1,4 @@
 DESCRIPTION = "servicemp3 and libeplayer backend for enigma2"
-AUTHOR = "OpenPLi team <info@openpli.org>"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
@@ -61,22 +60,15 @@ GST_UGLY_RDEPS = "\
 	gstreamer1.0-plugins-ugly-dvdsub \
 	"
 
-PACKAGECONFIG ??= "gstreamer"
-PACKAGECONFIG[gstreamer]       = "--enable-gstreamer --with-gstversion=1.0,--disable-gstreamer,gstreamer1.0-plugins-base gstreamer1.0"
-PACKAGECONFIG[libeplayer]      = "--enable-libeplayer3,--disable-libeplayer3,libeplayer3"
-
 DEPENDS = "\
 	enigma2 \
+	${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "gstreamer1.0-plugins-base gstreamer1.0", d)} \
 	${PYTHONNAMEONLY} \
 	"
 
 RDEPENDS_${PN} = "\
 	enigma2 \
-	${@bb.utils.contains("PACKAGECONFIG", "libeplayer", "libeplayer3", "", d)} \
-	"
-
-RRECOMMENDS_${PN} = "\
-	${@bb.utils.contains("PACKAGECONFIG", "gstreamer", "\
+	${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "\
 	glib-networking \
 	gstreamer1.0-plugin-subsink \
 	virtual/gstreamer1.0-dvbmediasink \
@@ -84,8 +76,7 @@ RRECOMMENDS_${PN} = "\
 	${GST_GOOD_RDEPS} \
 	${GST_BAD_RDEPS} \
 	${GST_UGLY_RDEPS} \
-	", "", d)} \
-	${@bb.utils.contains("PACKAGECONFIG", "libeplayer", "libeplayer3", "", d)} \
+	", d)} \
 	"
 
 SRC_URI = "git://github.com/OpenVisionE2/servicemp3epl.git;branch=master"
@@ -98,6 +89,7 @@ PV = "git${SRCPV}"
 PKGV = "git${GITPKGV}"
 
 EXTRA_OECONF = "\
+	${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "--enable-libeplayer3 --disable-gstreamer", "--enable-gstreamer --with-gstversion=1.0 --disable-libeplayer3", d)} \
 	BUILD_SYS=${BUILD_SYS} \
 	HOST_SYS=${HOST_SYS} \
 	STAGING_INCDIR=${STAGING_INCDIR} \
