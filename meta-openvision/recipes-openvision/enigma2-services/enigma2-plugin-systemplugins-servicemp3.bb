@@ -60,7 +60,7 @@ GST_UGLY_RDEPS = "\
 
 DEPENDS = "\
 	enigma2 \
-	gstreamer1.0-plugins-base gstreamer1.0 \
+	${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "gstreamer1.0-plugins-base gstreamer1.0", d)} \
 	${PYTHONNAMEONLY} \
 	"
 
@@ -75,13 +75,15 @@ GST_NEEDED_PLUGINS = "\
 
 RDEPENDS_${PN} = "\
 	enigma2 \
+	${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "\
 	glib-networking \
 	gstreamer1.0-plugin-subsink \
 	virtual/gstreamer1.0-dvbmediasink \
 	${GST_NEEDED_PLUGINS} \
+	", d)} \
 	"
 
-SRC_URI = "git://github.com/OpenVisionE2/servicemp3.git"
+SRC_URI = "${@bb.utils.contains("MACHINE_FEATURES", "sh4stb", "git://github.com/OpenVisionE2/servicemp3epl.git;branch=master", "git://github.com/OpenVisionE2/servicemp3.git", d)}"
 
 S = "${WORKDIR}/git"
 
@@ -101,9 +103,22 @@ EXTRA_OECONF = "\
 	--with-stbplatform=${STB_PLATFORM} \
 	"
 
+EXTRA_OECONF_sh4 = "\
+	${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "--enable-libeplayer3 --disable-gstreamer", "--enable-gstreamer --with-gstversion=1.0 --disable-libeplayer3", d)} \
+	BUILD_SYS=${BUILD_SYS} \
+	HOST_SYS=${HOST_SYS} \
+	STAGING_INCDIR=${STAGING_INCDIR} \
+	STAGING_LIBDIR=${STAGING_LIBDIR} \
+	--with-boxtype=${MACHINE} \
+	--with-boxbrand=${BOX_BRAND} \
+	--with-stbplatform=${STB_PLATFORM} \
+	"
+
 FILES_${PN} = "\
 	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceMP3/*.${PYTHONEXTENSION} \
 	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceMP3/servicemp3.so"
 
 FILES_${PN}-dev = "\
 	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceMP3/servicemp3.la"
+
+CXXFLAGS_append_sh4 = " -std=c++11 -fPIC -fno-strict-aliasing"

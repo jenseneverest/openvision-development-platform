@@ -30,11 +30,11 @@ EXTRA_OECONF = "\
 	--with-stbplatform=${STB_PLATFORM} \
 	"
 
-FILES_${PN} += "\
+FILES_${PN} = "\
 	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/*.${PYTHONEXTENSION} \
 	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/*.png \
 	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/*/*/*/*.mo \
 	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/servicehisilicon.so"
 
-FILES_${PN}-dev += "\
+FILES_${PN}-dev = "\
 	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceHisilicon/servicehisilicon.la"

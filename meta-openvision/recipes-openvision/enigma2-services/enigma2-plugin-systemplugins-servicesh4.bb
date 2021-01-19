@@ -1,4 +1,4 @@
-DESCRIPTION = "servicelibeplayer backend for enigma2"
+DESCRIPTION = "libeplayer backend for enigma2"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
@@ -6,8 +6,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 PROVIDES += "virtual/enigma2-mediaservice"
 RPROVIDES_${PN} += "virtual/enigma2-mediaservice"
-
-CXXFLAGS_append_sh4 = " -std=c++11 -fPIC -fno-strict-aliasing"
 
 DEPENDS = "\
 	enigma2 \
@@ -46,3 +44,5 @@ FILES_${PN} = "\
 
 FILES_${PN}-dev = "\
 	${libdir}/enigma2/python/Plugins/SystemPlugins/Servicelibpl/servicelibpl.la"
+
+CXXFLAGS_append_sh4 = " -std=c++11 -fPIC -fno-strict-aliasing"
