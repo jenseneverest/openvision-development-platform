@@ -113,6 +113,7 @@ IMAGE_INSTALL += "\
 	${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", " \
 	${MACHINE_FEATURE_RELATED_PLUGINS}", d)} \
 	${@bb.utils.contains_any("MACHINE_FEATURES", "smallflash middleflash", "", " \
+	autofs \
 	cifs-utils \
 	dvbfetool \
 	nfs-utils \
