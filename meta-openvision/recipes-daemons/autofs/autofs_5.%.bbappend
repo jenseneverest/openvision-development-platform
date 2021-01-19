@@ -4,13 +4,13 @@ EXTRA_OECONF += "--with-confdir=${sysconfdir}/default"
 
 SRC_URI += "file://99_autofs"
 
-CONFFILES = "${sysconfdir}/auto.master ${sysconfdir}/auto.net"
+CONFFILES = "${sysconfdir}/auto.master ${sysconfdir}/auto.network"
 
 # Remove and change configuration files
 do_install_append() {
 	echo "/media/autofs ${sysconfdir}/auto.network --ghost" > ${D}${sysconfdir}/auto.master
-	echo "# automounter configuration" > ${D}${sysconfdir}/auto.net
-	chmod 0644 ${D}${sysconfdir}/auto.net
+	echo "# automounter configuration" > ${D}${sysconfdir}/auto.network
+	chmod 0644 ${D}${sysconfdir}/auto.network
 	rm -f ${D}${sysconfdir}/auto.smb ${D}${sysconfdir}/auto.misc ${D}${sysconfdir}/autofs_ldap_auth.conf
 	sed -i 's/^TIMEOUT=300/TIMEOUT=30/' ${D}${sysconfdir}/default/autofs
 	install -d ${D}${sysconfdir}/default/volatiles
