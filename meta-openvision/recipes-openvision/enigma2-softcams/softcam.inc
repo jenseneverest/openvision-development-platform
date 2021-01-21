@@ -22,7 +22,7 @@ CAMLINK = "$D${sysconfdir}/init.d/softcam"
 CAMPATH = "$D${sysconfdir}/init.d/softcam.${CAMNAME}"
 
 CAMSTART ?= "exec start-stop-daemon -S -x ${bindir}/${CAMNAME}"
-CAMSTOP  ?= "exec start-stop-daemon -K -R 2 -x ${bindir}/${CAMNAME}"
+CAMSTOP  ?= "exec start-stop-daemon -K -o -R 2 -x ${bindir}/${CAMNAME}"
 
 # Generate a simplistic standard init script
 # (sorry for the sleep 1, but start-stop-daemon -R does not work as advertised)
