@@ -21,7 +21,7 @@ IMAGE_INSTALL = "\
 	nfs-utils-client \
 	openssh-sftp \
 	openvision-extra-feed-config \
-	openvision-video-bootlogo
+	openvision-video-bootlogo \
 	opkg \
 	packagegroup-base \
 	packagegroup-core-boot \
