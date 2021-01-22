@@ -44,7 +44,7 @@ ENIGMA2_PLUGINS += "\
 	enigma2-plugin-extensions-epgimport \
 	enigma2-plugin-extensions-epgrefresh \
 	enigma2-plugin-extensions-reconstructapsc \
-	enigma2-plugin-skins-octetfhd \
+	enigma2-plugin-skins-linuxsat \
 	enigma2-plugin-systemplugins-mountmanager \
 	enigma2-plugin-systemplugins-terrestrialscan", d)} \
 	${@bb.utils.contains_any("MACHINE_FEATURES", "smallflash middleflash", "", " \
