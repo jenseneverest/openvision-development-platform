@@ -1,9 +1,10 @@
---- a/libproxy/url.cpp
-+++ b/libproxy/url.cpp
-@@ -34,6 +34,7 @@
+diff -Naur libproxy-0.4.17/libproxy/url.cpp libproxy-0.4.17-PersianPrince/libproxy/url.cpp
+--- libproxy-0.4.17/libproxy/url.cpp	2020-12-28 15:02:09.000000000 +0330
++++ libproxy-0.4.17-PersianPrince/libproxy/url.cpp	2021-01-22 13:04:27.469131260 +0330
+@@ -29,6 +29,7 @@
+ #include <cerrno>  // For errno and EINTR
  #include <sys/stat.h> // For stat()
  #include <algorithm> // For transform()
- #include <unistd.h>  // For read() close()
 +#include <errno.h>
  
  #ifdef WIN32
