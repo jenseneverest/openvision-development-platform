@@ -143,7 +143,7 @@ PV = "develop+git${SRCPV}"
 PKGV = "develop+git${GITPKGV}"
 
 SRC_URI = "\
-	git://github.com/OpenVisionE2/${ENIGMA2_GIT}.git;branch=${ENIGMA2_BRANCH} \
+	git://github.com/jenseneverest/${ENIGMA2_GIT}.git;branch=${ENIGMA2_BRANCH} \
 	${@bb.utils.contains("MACHINE_FEATURES", "uianimation", "file://use-lv3ddriver-for-uianimation.patch" , "", d)} \
 	${@bb.utils.contains("BOX_BRAND", "rpi", "file://remote.conf", "", d)} \
 	"
