@@ -10,7 +10,7 @@ inherit gitpkgv allarch
 PV = "git${SRCPV}"
 PKGV = "git${GITPKGV}"
 
-SRC_URI = "git://github.com/OpenVisionE2/enigma2-fonts.git;protocol=git"
+SRC_URI = "git://github.com/jenseneverest/enigma2-fonts.git;protocol=git"
 
 S = "${WORKDIR}/git/${FONTNAME}"
 
