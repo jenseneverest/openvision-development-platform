@@ -1,4 +1,4 @@
-SUMMARY = "Enigma2 Skin OctEtFHD"
+SUMMARY = "Linuxsat Openvision Skin"
 SECTION = "base"
 PRIORITY = "required"
 LICENSE = "proprietary"
@@ -19,7 +19,7 @@ RDEPENDS_${PN} += "\
 	enigma2-plugin-systemplugins-weathercomponenthandler \
 	"
 
-SRC_URI = "git://github.com/OpenVisionE2/OctEtFHD-skin.git;protocol=git"
+SRC_URI = "git://github.com/jenseneverest/linuxsat-skin.git;protocol=git"
 
 S = "${WORKDIR}/git"
 
