@@ -20,7 +20,6 @@ IMAGE_INSTALL = "\
 	modutils-loadscript \
 	nfs-utils-client \
 	openssh-sftp \
-	openvision-extra-feed-config \
 	openvision-linuxsat-feed-config \
 	openvision-video-bootlogo \
 	opkg \
