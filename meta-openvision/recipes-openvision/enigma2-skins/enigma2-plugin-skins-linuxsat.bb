@@ -14,6 +14,7 @@ RDEPENDS_${PN} += "\
 	enigma2-plugin-extensions-weatherplugin \
 	${@bb.utils.contains_any("MACHINE_FEATURES", "smallflash middleflash", "", "enigma2-plugin-extensions-xtraevent", d)} \
 	enigma2-plugin-fonts-opensans \
+	enigma2-plugin-fonts-roboto \
 	enigma2-plugin-fonts-segoe \
 	enigma2-plugin-skincomponents-weathercomponent \
 	enigma2-plugin-systemplugins-weathercomponenthandler \
