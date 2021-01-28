@@ -15,7 +15,6 @@ WIFI_DRIVERS = " \
 	firmware-rtl8188eu \
 	firmware-zd1211 \
 	\
-	kernel-module-8192eu \
 	kernel-module-ath9k-htc \
 	kernel-module-carl9170 \
 	kernel-module-r8712u \
