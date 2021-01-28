@@ -1,4 +1,4 @@
-SUMMARY = "zeta Openvision Skin"
+SUMMARY = "oZeta Openvision Skin"
 MAINTAINER = "Lululla - mmark"
 SECTION = "misc"
 PRIORITY = "optional"
@@ -11,7 +11,7 @@ inherit gitpkgv allarch
 PV = "git${SRCPV}"
 PKGV = "git${GITPKGV}"
 
-SRC_URI = "git://github.com/jenseneverest/zeta-skin.git;protocol=git"
+SRC_URI = "git://github.com/jenseneverest/oZeta-skin.git;protocol=git"
 
 S = "${WORKDIR}/git"
 
