@@ -1,28 +1,30 @@
-From 6465e96a344720ccc8b95b28497f2bf2019f430c Mon Sep 17 00:00:00 2001
-From: fairbird <rrrr53@hotmail.com>
-Date: Fri, 24 Apr 2020 15:19:10 +0300
-Subject: [PATCH] Add_option_to_choose_style_of_VirtualKeyBoard
-
----
-
-diff --git a/src/YouTubeSearch.py b/src/YouTubeSearch.py
-index 81e97ff..0d37513 100644
---- a/src/YouTubeSearch.py
-+++ b/src/YouTubeSearch.py
-@@ -15,6 +15,7 @@ from Components.Pixmap import Pixmap
+diff -Naur enigma2-plugin-youtube/src/YouTubeSearch.py enigma2-plugin-youtube-PersianPrince/src/YouTubeSearch.py
+--- enigma2-plugin-youtube/src/YouTubeSearch.py	2021-01-29 12:38:25.000000000 +0330
++++ enigma2-plugin-youtube-PersianPrince/src/YouTubeSearch.py	2021-01-29 12:46:56.058419764 +0330
+@@ -2,7 +2,7 @@
+ 
+ from threading import Thread
+ from json import loads
+-
++import os
+ from enigma import ePoint, getDesktop
+ from Screens.ChoiceBox import ChoiceBox
+ from Screens.Screen import Screen
+@@ -15,7 +15,7 @@
  from Components.Sources.Boolean import Boolean
  from Components.Sources.List import List
  from Components.Sources.StaticText import StaticText
+-
 +from Tools.Directories import resolveFilename, SCOPE_PLUGINS
- 
  from . import _
  from .compat import compat_quote
-@@ -314,8 +315,20 @@ class YouTubeSearch(Screen, ConfigListScreen):
+ from .compat import compat_ssl_urlopen
+@@ -312,8 +312,20 @@
  
  	def openKeyboard(self):
  		self['config'].getCurrent()[1].help_window.instance.hide()
 -		self.session.openWithCallback(self.keyBoardCallback, YouTubeVirtualKeyBoard,
--			text = self.searchValue.value)
+-			text=self.searchValue.value)
 +		self.VirtualKeyBoard = config.plugins.YouTube.VirtualKeyBoard.value
 +		if self.VirtualKeyBoard == "YouTube":
 +			if os.path.islink("/usr/lib/enigma2/python/Screens/VirtualKeyBoard.py") and os.path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NewVirtualKeyBoard")):
@@ -40,9 +42,10 @@ index 81e97ff..0d37513 100644
  
  	def keyBoardCallback(self, name):
  		config = self['config'].getCurrent()[1]
---- a/src/YouTubeUi.py
-+++ b/src/YouTubeUi.py
-@@ -113,6 +113,8 @@ config.plugins.YouTube.onMovieEof = ConfigSelection(default='quit', choices=[
+diff -Naur enigma2-plugin-youtube/src/YouTubeUi.py enigma2-plugin-youtube-PersianPrince/src/YouTubeUi.py
+--- enigma2-plugin-youtube/src/YouTubeUi.py	2021-01-29 12:38:25.000000000 +0330
++++ enigma2-plugin-youtube-PersianPrince/src/YouTubeUi.py	2021-01-29 12:48:25.002631989 +0330
+@@ -70,6 +70,8 @@
  	('playprev', _('Play previous'))])
  config.plugins.YouTube.onMovieStop = ConfigSelection(default='ask', choices=[
  	('ask', _('Ask user')), ('quit', _('Return to list'))])
@@ -51,15 +54,13 @@ index 81e97ff..0d37513 100644
  config.plugins.YouTube.login = ConfigYesNo(default=False)
  config.plugins.YouTube.downloadDir = ConfigDirectory(default=resolveFilename(SCOPE_HDD))
  config.plugins.YouTube.mergeFiles = ConfigYesNo(default=False)
-@@ -1476,6 +1476,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
+@@ -1404,6 +1406,9 @@
  		configlist.append(getConfigListEntry(_('Merge downloaded files:'),
  			config.plugins.YouTube.mergeFiles,
  			_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
-+		configlist.append(getConfigListEntry(_('Choose VirtualKeyBoard Style:'),
++		configlist.append(getConfigListEntry(_('Choose VirtualKeyBoard style:'),
 +			config.plugins.YouTube.VirtualKeyBoard,
-+			_('You can choose what style of VirtualKeyBoard to use it.\nYouTube OR Image (VirtualKeyBoard).')))
++			_('You can choose what style of VirtualKeyBoard to use.\nYouTube or Image (VirtualKeyBoard).')))
  		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
  			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
  			if p.name == _("ServiceApp"):
--- 
-2.20.1
