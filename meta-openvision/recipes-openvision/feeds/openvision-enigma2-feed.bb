@@ -262,7 +262,7 @@ ENIGMA2_OPTIONAL += "\
 	enigma2-plugin-skins-mxsline-raed \
 	enigma2-plugin-skins-linuxsat \
 	enigma2-plugin-skins-overlayhd \
-	enigma2-plugin-skins-oZeta \
+	enigma2-plugin-skins-ozeta \
 	enigma2-plugin-skins-pli-hd-fullnight \
 	enigma2-plugin-skins-sevenhd \
 	enigma2-plugin-skins-simple-gray-hd \
