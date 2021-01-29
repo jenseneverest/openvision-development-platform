@@ -238,7 +238,6 @@ ENIGMA2_OPTIONAL += "\
 	enigma2-plugin-extensions-xmodem \
 	enigma2-plugin-extensions-xstreamity \
 	enigma2-plugin-extensions-xtraevent \
-	enigma2-plugin-extensions-yahooweather \
 	enigma2-plugin-extensions-youtube \
 	enigma2-plugin-security-firewall \
 	enigma2-plugin-skins-arctic-raed \
